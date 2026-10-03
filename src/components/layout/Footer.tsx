@@ -56,6 +56,7 @@ export default function Footer() {
               <li><a href="#" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Careers</a></li>
               <li><a href="#" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Terms of Service</a></li>
+              <li><Link to="/admin" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Admin</Link></li>
             </ul>
           </div>
         </div>

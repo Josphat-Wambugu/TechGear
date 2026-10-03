@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2, ChevronLeft, Lock, Truck, CreditCard, ClipboardCheck } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
+import { useStoreData } from '@/hooks/useStoreData';
 import { formatCurrency } from '@/utils/formatCurrency';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
@@ -60,6 +61,7 @@ function validatePayment(data: PaymentInfo): FormErrors<PaymentInfo> {
 
 export default function Checkout() {
   const { items, totals, clearCart } = useCart();
+  const { addOrder } = useStoreData();
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('shipping');
@@ -104,6 +106,18 @@ export default function Checkout() {
 
   const handlePlaceOrder = () => {
     const generated = `TG-${Math.floor(100000 + Math.random() * 900000)}`;
+    addOrder({
+      orderNumber: generated,
+      shipping,
+      items: items.map(({ product, quantity }) => ({
+        productId: product.id,
+        name: product.name,
+        image: product.images[0],
+        price: product.price,
+        quantity,
+      })),
+      totals,
+    });
     setOrderNumber(generated);
     setShowConfirmation(true);
   };
