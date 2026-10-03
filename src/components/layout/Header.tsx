@@ -5,6 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import Navbar from './Navbar';
 import CartDrawer from './CartDrawer';
 import ThemeToggle from '../common/ThemeToggle';
+import AccountMenu from './AccountMenu';
 
 const mobileCategories = ['All', 'Laptops', 'Audio', 'Wearables', 'Monitors', 'Cameras', 'Accessories'];
 
@@ -34,6 +35,7 @@ export default function Header() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
+            <AccountMenu />
             <button
               className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               onClick={() => setMobileMenuOpen((v) => !v)}

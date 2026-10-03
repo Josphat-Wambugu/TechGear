@@ -6,11 +6,15 @@ import Catalog from '@/pages/Catalog';
 import ProductDetail from '@/pages/ProductDetail';
 import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
+import Login from '@/pages/Login';
+import Signup from '@/pages/Signup';
+import Profile from '@/pages/Profile';
 import AdminLayout from '@/pages/admin/AdminLayout';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminProducts from '@/pages/admin/AdminProducts';
 import AdminOrders from '@/pages/admin/AdminOrders';
 import AdminCustomers from '@/pages/admin/AdminCustomers';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 function StoreLayout() {
   return (
@@ -34,9 +38,26 @@ export default function AppRouter() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />

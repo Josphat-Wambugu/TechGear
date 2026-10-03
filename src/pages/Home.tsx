@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Headphones, Laptop, Watch, Camera, Monitor, Cable } from 'lucide-react';
+import { ArrowRight, Headphones, Laptop, Watch, Camera, Monitor, Cable, UserCircle, LayoutDashboard } from 'lucide-react';
 import { useFeaturedProducts } from '@/hooks/useProducts';
+import { useAuth } from '@/hooks/useAuth';
 import ProductGrid from '@/components/ecommerce/ProductGrid';
 
 const categoryLinks = [
@@ -14,6 +15,7 @@ const categoryLinks = [
 
 export default function Home() {
   const featured = useFeaturedProducts(4);
+  const { currentUser } = useAuth();
 
   return (
     <div>
@@ -46,6 +48,24 @@ export default function Home() {
               >
                 View Laptops
               </Link>
+              {currentUser ? (
+                <Link
+                  to={currentUser.role === 'admin' ? '/admin' : '/profile'}
+                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400
+                    px-4 py-3 rounded-xl font-medium transition-colors duration-200"
+                >
+                  {currentUser.role === 'admin' ? <LayoutDashboard size={16} /> : <UserCircle size={16} />}
+                  {currentUser.role === 'admin' ? 'Admin Dashboard' : 'My Account'}
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400
+                    px-4 py-3 rounded-xl font-medium transition-colors duration-200"
+                >
+                  <UserCircle size={16} /> Sign In
+                </Link>
+              )}
             </div>
           </div>
           <div className="relative">
