@@ -1,48 +1,64 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, Cpu } from 'lucide-react';
+import { ShoppingCart, Search, Menu, Cpu } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
-import Navbar from './Navbar';
+import { useSidebar } from '@/hooks/useSidebar';
 import CartDrawer from './CartDrawer';
 import ThemeToggle from '../common/ThemeToggle';
 import AccountMenu from './AccountMenu';
 
-const mobileCategories = ['All', 'Laptops', 'Audio', 'Wearables', 'Monitors', 'Cameras', 'Accessories'];
-
 export default function Header() {
   const [cartOpen, setCartOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileSearch, setMobileSearch] = useState('');
+  const [query, setQuery] = useState('');
   const { totals } = useCart();
+  const { toggleMobile } = useSidebar();
   const navigate = useNavigate();
 
-  const handleMobileSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate(`/catalog?search=${encodeURIComponent(mobileSearch)}`);
-    setMobileMenuOpen(false);
+    navigate(`/catalog?search=${encodeURIComponent(query)}`);
   };
 
   return (
     <>
       <header className="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200/80 dark:border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm group-hover:bg-indigo-700 transition-colors">
-              <Cpu size={18} className="text-white" />
-            </div>
-            <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">TechGear</span>
-          </Link>
+        <div className="px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 min-w-0 flex-1 md:flex-initial md:w-72">
+            <button
+              className="md:hidden p-2 -ml-1 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
+              onClick={toggleMobile}
+              aria-label="Toggle navigation menu"
+            >
+              <Menu size={20} />
+            </button>
+            <Link to="/" className="flex items-center gap-2 group md:hidden min-w-0">
+              <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm group-hover:bg-indigo-700 transition-colors flex-shrink-0">
+                <Cpu size={18} className="text-white" />
+              </div>
+              <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">
+                TechGear
+              </span>
+            </Link>
 
-          <div className="flex items-center gap-2">
+            <form onSubmit={handleSearch} className="hidden md:block relative w-full">
+              <Search
+                size={15}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+              />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search products..."
+                className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200"
+              />
+            </form>
+          </div>
+
+          <div className="flex items-center gap-2 flex-shrink-0">
             <ThemeToggle />
             <AccountMenu />
-            <button
-              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              onClick={() => setMobileMenuOpen((v) => !v)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
             <button
               className="relative p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 hover:-translate-y-0.5"
               onClick={() => setCartOpen(true)}
@@ -58,38 +74,23 @@ export default function Header() {
           </div>
         </div>
 
-        <Navbar />
-
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200/80 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-4 space-y-4">
-            <form onSubmit={handleMobileSearch} className="relative">
-              <Search
-                size={15}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
-              />
-              <input
-                type="text"
-                value={mobileSearch}
-                onChange={(e) => setMobileSearch(e.target.value)}
-                placeholder="Search products..."
-                className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400
-                  focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800"
-              />
-            </form>
-            <nav className="flex flex-col gap-1">
-              {mobileCategories.map((c) => (
-                <Link
-                  key={c}
-                  to={`/catalog?category=${encodeURIComponent(c)}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 py-2 transition-colors"
-                >
-                  {c === 'All' ? 'All Products' : c}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        )}
+        {/* Mobile-only search row — desktop/tablet search lives in the row above */}
+        <div className="md:hidden border-t border-slate-200/80 dark:border-slate-700 px-4 py-3">
+          <form onSubmit={handleSearch} className="relative">
+            <Search
+              size={15}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+            />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search products..."
+              className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400
+                focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800"
+            />
+          </form>
+        </div>
       </header>
 
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
