@@ -8,6 +8,9 @@ import RatingStars from '@/components/common/RatingStars';
 import Badge from '@/components/common/Badge';
 import Button from '@/components/common/Button';
 import ProductGrid from '@/components/ecommerce/ProductGrid';
+import ProductReviews from '@/components/ecommerce/ProductReviews';
+import ProductFaq from '@/components/ecommerce/ProductFaq';
+import { isLowStock } from '@/utils/stock';
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -91,9 +94,13 @@ export default function ProductDetail() {
           <div className="flex items-center gap-2 mb-2">
             {product.isNew && <Badge variant="indigo">New</Badge>}
             {discountPct > 0 && <Badge variant="rose">-{discountPct}% off</Badge>}
-            <Badge variant={product.inStock ? 'emerald' : 'slate'}>
-              {product.inStock ? `In Stock (${product.stockCount})` : 'Out of Stock'}
-            </Badge>
+            {!product.inStock ? (
+              <Badge variant="slate">Out of Stock</Badge>
+            ) : isLowStock(product.inStock, product.stockCount) ? (
+              <Badge variant="amber">Only {product.stockCount} left</Badge>
+            ) : (
+              <Badge variant="emerald">In Stock ({product.stockCount})</Badge>
+            )}
           </div>
 
           <span className="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wide">{product.brand}</span>
@@ -186,8 +193,12 @@ export default function ProductDetail() {
               ))}
             </dl>
           </div>
+
+          <ProductFaq product={product} />
         </div>
       </div>
+
+      <ProductReviews product={product} />
 
       {/* Related products */}
       {related.length > 0 && (
