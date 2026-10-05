@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, Lock, Truck, CreditCard, ClipboardCheck } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, ChevronDown, Lock, Truck, CreditCard, ClipboardCheck } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { useStoreData } from '@/hooks/useStoreData';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -71,6 +71,7 @@ export default function Checkout() {
   const [paymentErrors, setPaymentErrors] = useState<FormErrors<PaymentInfo>>({});
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
+  const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
 
   if (items.length === 0 && !showConfirmation) {
     return (
@@ -172,6 +173,31 @@ export default function Checkout() {
             </div>
           );
         })}
+      </div>
+
+      {/* Mobile-only collapsible summary so the running total stays visible while filling the form */}
+      <div className="lg:hidden mb-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden">
+        <button
+          onClick={() => setMobileSummaryOpen((v) => !v)}
+          className="w-full flex items-center justify-between gap-3 px-4 py-3"
+          aria-expanded={mobileSummaryOpen}
+        >
+          <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            {mobileSummaryOpen ? 'Hide order summary' : 'Show order summary'}
+          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-base font-bold text-slate-900 dark:text-white">{formatCurrency(totals.total)}</span>
+            <ChevronDown
+              size={16}
+              className={`text-slate-400 transition-transform duration-200 ${mobileSummaryOpen ? 'rotate-180' : ''}`}
+            />
+          </div>
+        </button>
+        {mobileSummaryOpen && (
+          <div className="px-4 pb-4 -mt-1 border-t border-slate-100 dark:border-slate-800 pt-3">
+            <OrderSummary totals={totals} showFreeShippingHint={false} />
+          </div>
+        )}
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
@@ -352,7 +378,7 @@ export default function Checkout() {
           )}
         </div>
 
-        <div>
+        <div className="hidden lg:block">
           <OrderSummary totals={totals} showFreeShippingHint={false} />
         </div>
       </div>

@@ -6,6 +6,7 @@ import RatingStars from '@/components/common/RatingStars';
 import Badge from '@/components/common/Badge';
 import { useCart } from '@/hooks/useCart';
 import { useState } from 'react';
+import { isLowStock } from '@/utils/stock';
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem, isInCart } = useCart();
@@ -41,6 +42,9 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.isNew && <Badge variant="indigo">New</Badge>}
           {discountPct > 0 && <Badge variant="rose">-{discountPct}%</Badge>}
           {!product.inStock && <Badge variant="slate">Out of Stock</Badge>}
+          {isLowStock(product.inStock, product.stockCount) && (
+            <Badge variant="amber">Only {product.stockCount} left</Badge>
+          )}
         </div>
       </div>
 
