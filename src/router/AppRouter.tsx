@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Sidebar from '@/components/layout/Sidebar';
+import { SidebarProvider } from '@/context/SidebarContext';
 import Home from '@/pages/Home';
 import Catalog from '@/pages/Catalog';
 import ProductDetail from '@/pages/ProductDetail';
@@ -18,13 +20,18 @@ import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 function StoreLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
-      <Header />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
+        <Header />
+        <div className="flex-1 flex">
+          <Sidebar />
+          <main className="flex-1 min-w-0">
+            <Outlet />
+          </main>
+        </div>
+        <Footer />
+      </div>
+    </SidebarProvider>
   );
 }
 
