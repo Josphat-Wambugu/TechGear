@@ -28,7 +28,7 @@ export default function ProductFilterSidebar() {
         <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Filters</h3>
         <button
           onClick={resetFilters}
-          className="flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          className="flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
         >
           <RotateCcw size={12} /> Reset
         </button>
@@ -44,7 +44,7 @@ export default function ProductFilterSidebar() {
               className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors
                 ${
                   category === c
-                    ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
+                    ? 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400'
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:bg-slate-900 hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
@@ -67,7 +67,7 @@ export default function ProductFilterSidebar() {
           step={10}
           value={priceRange[1]}
           onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
-          className="w-full accent-indigo-600"
+          className="w-full accent-brand-600"
         />
       </div>
 
@@ -81,7 +81,7 @@ export default function ProductFilterSidebar() {
               className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors
                 ${
                   minRating === r
-                    ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
+                    ? 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400'
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:bg-slate-900 hover:text-slate-900 dark:hover:text-white'
                 }`}
             >

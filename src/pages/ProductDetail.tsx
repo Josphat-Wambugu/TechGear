@@ -11,6 +11,7 @@ import ProductGrid from '@/components/ecommerce/ProductGrid';
 import ProductReviews from '@/components/ecommerce/ProductReviews';
 import ProductFaq from '@/components/ecommerce/ProductFaq';
 import { isLowStock } from '@/utils/stock';
+import PageContainer from '@/components/layout/PageContainer';
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -30,7 +31,7 @@ export default function ProductDetail() {
         <p className="text-slate-500 dark:text-slate-400 mt-2">The product you're looking for doesn't exist.</p>
         <Link
           to="/catalog"
-          className="inline-flex items-center gap-1 mt-6 text-indigo-600 font-medium hover:text-indigo-700 dark:text-indigo-400"
+          className="inline-flex items-center gap-1 mt-6 text-brand-600 font-medium hover:text-brand-700 dark:text-brand-400"
         >
           <ChevronLeft size={16} /> Back to catalog
         </Link>
@@ -54,7 +55,7 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageContainer className="py-8">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-6"
@@ -79,7 +80,7 @@ export default function ProductDetail() {
                   key={img}
                   onClick={() => setActiveImage(idx)}
                   className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                    activeImage === idx ? 'border-indigo-600' : 'border-transparent'
+                    activeImage === idx ? 'border-brand-600' : 'border-transparent'
                   }`}
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
@@ -125,7 +126,7 @@ export default function ProductDetail() {
           <div className="flex items-center gap-4 mt-6">
             <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-xl">
               <button
-                className="p-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                className="p-3 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                 aria-label="Decrease quantity"
               >
@@ -133,7 +134,7 @@ export default function ProductDetail() {
               </button>
               <span className="w-10 text-center font-medium">{quantity}</span>
               <button
-                className="p-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors disabled:opacity-30"
+                className="p-3 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors disabled:opacity-30"
                 onClick={() => setQuantity((q) => Math.min(product.stockCount, q + 1))}
                 disabled={quantity >= product.stockCount}
                 aria-label="Increase quantity"
@@ -168,15 +169,15 @@ export default function ProductDetail() {
           {/* Trust badges */}
           <div className="grid grid-cols-3 gap-3 mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700">
             <div className="flex flex-col items-center text-center gap-1.5">
-              <Truck size={18} className="text-indigo-600" />
+              <Truck size={18} className="text-brand-600" />
               <span className="text-xs text-slate-500 dark:text-slate-400">Free shipping over $75</span>
             </div>
             <div className="flex flex-col items-center text-center gap-1.5">
-              <RotateCcw size={18} className="text-indigo-600" />
+              <RotateCcw size={18} className="text-brand-600" />
               <span className="text-xs text-slate-500 dark:text-slate-400">30-day returns</span>
             </div>
             <div className="flex flex-col items-center text-center gap-1.5">
-              <ShieldCheck size={18} className="text-indigo-600" />
+              <ShieldCheck size={18} className="text-brand-600" />
               <span className="text-xs text-slate-500 dark:text-slate-400">2-year warranty</span>
             </div>
           </div>
@@ -207,6 +208,6 @@ export default function ProductDetail() {
           <ProductGrid products={related} />
         </section>
       )}
-    </div>
+    </PageContainer>
   );
 }

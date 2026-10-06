@@ -4,6 +4,29 @@
 
 @theme {
   --color-slate-50: #f8fafc;
+
+  /* Brand color scale — single source of truth instead of hardcoded
+     indigo-* utilities scattered across components. Values match
+     Tailwind's stock indigo palette so this is a token rename, not a
+     visual change. */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
+
+  /* Centralized z-index scale for layout overlays — avoids hardcoded
+     z-30/z-40/z-50 duplicated independently across Header, Sidebar,
+     AdminLayout and CartDrawer. */
+  --z-index-header: 30;
+  --z-index-overlay-backdrop: 40;
+  --z-index-overlay-panel: 50;
 }
 
 html, body, #root {

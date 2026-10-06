@@ -23,7 +23,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
         <div className="flex-1 min-w-0">
           <Link
             to={`/product/${product.id}`}
-            className="text-sm font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors line-clamp-2"
+            className="text-sm font-semibold text-slate-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors line-clamp-2"
           >
             {product.name}
           </Link>
@@ -34,7 +34,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg">
             <button
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
               onClick={() => updateQuantity(product.id, quantity - 1)}
               aria-label="Decrease quantity"
             >
@@ -42,7 +42,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
             </button>
             <span className="text-sm w-8 text-center font-medium">{quantity}</span>
             <button
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors disabled:opacity-30"
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors disabled:opacity-30"
               onClick={() => updateQuantity(product.id, quantity + 1)}
               disabled={quantity >= product.stockCount}
               aria-label="Increase quantity"

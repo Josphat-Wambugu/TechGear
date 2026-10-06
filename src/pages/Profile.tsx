@@ -74,8 +74,8 @@ export default function Profile() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-full bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center flex-shrink-0">
-            <UserCircle size={28} className="text-indigo-600" />
+          <div className="w-14 h-14 rounded-full bg-brand-50 dark:bg-brand-950 flex items-center justify-center flex-shrink-0">
+            <UserCircle size={28} className="text-brand-600" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-slate-900 dark:text-white">{currentUser.fullName}</h1>

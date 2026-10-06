@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { PanelLeftClose, PanelLeftOpen, X, Cpu } from 'lucide-react';
 import { useSidebar } from '@/hooks/useSidebar';
 import { navLinks } from '@/data/navLinks';
+import { useOverlay } from '@/hooks/useOverlay';
 
 function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: () => void }) {
   const location = useLocation();
@@ -20,7 +21,7 @@ function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (
               collapsed ? 'justify-center h-10 w-10 mx-auto' : 'gap-3 px-3 py-2.5'
             } ${
               isActive
-                ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
+                ? 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400'
                 : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -35,7 +36,7 @@ function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (
 
 function BrandMark() {
   return (
-    <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center flex-shrink-0">
+    <div className="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center flex-shrink-0">
       <Cpu size={14} className="text-white" />
     </div>
   );
@@ -43,6 +44,7 @@ function BrandMark() {
 
 export default function Sidebar() {
   const { collapsed, toggleCollapsed, mobileOpen, closeMobile } = useSidebar();
+  const panelRef = useOverlay(mobileOpen, closeMobile);
 
   return (
     <>
@@ -76,13 +78,17 @@ export default function Sidebar() {
 
       {/* Mobile: off-canvas drawer */}
       <div
-        className={`md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-overlay-backdrop transition-opacity duration-300 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={closeMobile}
       />
       <aside
-        className={`md:hidden fixed top-0 left-0 h-full w-72 max-w-[85vw] bg-white dark:bg-slate-900 z-50 shadow-xl
+        ref={panelRef as React.RefObject<HTMLElement>}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        className={`md:hidden fixed top-0 left-0 h-full w-72 max-w-[85vw] bg-white dark:bg-slate-900 z-overlay-panel shadow-xl
           border-r border-slate-200/80 dark:border-slate-700 flex flex-col transition-transform duration-300
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >

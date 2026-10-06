@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TechGear — thoughtfully selected tech gear for work, creativity, and everyday life." />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>TechGear Store</title>
+    <script>
+      // Applies the saved/preferred theme before first paint. ThemeContext still
+      // owns the toggle and keeps localStorage in sync after mount, but without
+      // this blocking script a dark-mode visitor sees a flash of the light
+      // theme on every load, since React's effects only run after the first paint.
+      (function () {
+        try {
+          var saved = localStorage.getItem('techgear-theme');
+          var isDark = saved === 'dark' || (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* localStorage/matchMedia unavailable — fall back to light, same as ThemeContext's default. */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

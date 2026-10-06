@@ -13,7 +13,7 @@ export default function AdminLayout() {
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950">
       <aside className="hidden md:flex md:flex-col w-60 flex-shrink-0 border-r border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900">
         <Link to="/" className="flex items-center gap-2 px-5 h-16 border-b border-slate-200/80 dark:border-slate-800">
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
             <Cpu size={16} className="text-white" />
           </div>
           <div className="leading-tight">
@@ -31,7 +31,7 @@ export default function AdminLayout() {
               className={({ isActive }) =>
                 `flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400'
+                    ? 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400'
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                 }`
               }
@@ -53,7 +53,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Mobile top nav */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-around py-2">
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-header bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-around py-2">
         {navItems.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}
@@ -61,7 +61,7 @@ export default function AdminLayout() {
             end={end}
             className={({ isActive }) =>
               `flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[11px] font-medium ${
-                isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400'
+                isActive ? 'text-brand-600 dark:text-brand-400' : 'text-slate-500 dark:text-slate-400'
               }`
             }
           >

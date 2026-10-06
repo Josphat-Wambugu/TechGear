@@ -3,6 +3,7 @@ import { ArrowRight, Headphones, Laptop, Watch, Camera, Monitor, Cable, UserCirc
 import { useFeaturedProducts } from '@/hooks/useProducts';
 import { useAuth } from '@/hooks/useAuth';
 import ProductGrid from '@/components/ecommerce/ProductGrid';
+import PageContainer from '@/components/layout/PageContainer';
 
 const categoryLinks = [
   { label: 'Laptops', value: 'Laptops', icon: Laptop },
@@ -20,10 +21,10 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-indigo-50 via-white to-white border-b border-slate-200/80 dark:border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <section className="bg-gradient-to-br from-brand-50 via-white to-white border-b border-slate-200/80 dark:border-slate-700">
+        <PageContainer className="py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <span className="inline-block px-3 py-1 rounded-lg bg-indigo-100 text-indigo-700 dark:text-indigo-400 text-xs font-semibold mb-4">
+            <span className="inline-block px-3 py-1 rounded-lg bg-brand-100 text-brand-700 dark:text-brand-400 text-xs font-semibold mb-4">
               New arrivals every week
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -36,8 +37,8 @@ export default function Home() {
             <div className="mt-8 flex items-center gap-3">
               <Link
                 to="/catalog"
-                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl
-                  font-medium shadow-sm hover:bg-indigo-700 hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-brand-600 text-white px-6 py-3 rounded-xl
+                  font-medium shadow-sm hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-200"
               >
                 Shop the Catalog <ArrowRight size={16} />
               </Link>
@@ -51,7 +52,7 @@ export default function Home() {
               {currentUser ? (
                 <Link
                   to={currentUser.role === 'admin' ? '/admin' : '/profile'}
-                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400
+                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400
                     px-4 py-3 rounded-xl font-medium transition-colors duration-200"
                 >
                   {currentUser.role === 'admin' ? <LayoutDashboard size={16} /> : <UserCircle size={16} />}
@@ -60,7 +61,7 @@ export default function Home() {
               ) : (
                 <Link
                   to="/login"
-                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400
+                  className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400
                     px-4 py-3 rounded-xl font-medium transition-colors duration-200"
                 >
                   <UserCircle size={16} /> Sign In
@@ -77,11 +78,11 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Category quick-links */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <PageContainer as="section" className="py-12">
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
           {categoryLinks.map(({ label, value, icon: Icon }) => (
             <Link
@@ -90,17 +91,17 @@ export default function Home() {
               className="flex flex-col items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700 rounded-xl p-4
                 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
-              <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center">
-                <Icon size={18} className="text-indigo-600" />
+              <div className="w-10 h-10 rounded-lg bg-brand-50 dark:bg-brand-950 flex items-center justify-center">
+                <Icon size={18} className="text-brand-600" />
               </div>
               <span className="text-xs font-medium text-slate-700 dark:text-slate-300 text-center">{label}</span>
             </Link>
           ))}
         </div>
-      </section>
+      </PageContainer>
 
       {/* Featured products */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <PageContainer as="section" className="pb-16">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Featured Products</h2>
@@ -108,17 +109,17 @@ export default function Home() {
           </div>
           <Link
             to="/catalog"
-            className="hidden sm:flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 transition-colors"
+            className="hidden sm:flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 transition-colors"
           >
             View all <ArrowRight size={14} />
           </Link>
         </div>
         <ProductGrid products={featured} />
-      </section>
+      </PageContainer>
 
       {/* Value props */}
       <section className="bg-white dark:bg-slate-900 border-y border-slate-200/80 dark:border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-3 gap-8 text-center">
+        <PageContainer className="py-12 grid sm:grid-cols-3 gap-8 text-center">
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Free Shipping</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">On all orders over $75</p>
@@ -131,7 +132,7 @@ export default function Home() {
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white">2-Year Warranty</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">On every product we sell</p>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

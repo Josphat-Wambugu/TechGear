@@ -114,8 +114,8 @@ export default function AdminOrders() {
                       onClick={() => updateOrderStatus(activeOrder.id, s)}
                       className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors ${
                         activeOrder.status === s
-                          ? 'bg-indigo-600 border-indigo-600 text-white'
-                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-indigo-300'
+                          ? 'bg-brand-600 border-brand-600 text-white'
+                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-brand-300'
                       }`}
                     >
                       {s}
