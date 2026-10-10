@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200/80 dark:border-slate-700">
+      <header className="sticky top-0 z-header bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200/80 dark:border-slate-700">
         <div className="px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0 flex-1 md:flex-initial md:w-72">
             <button
@@ -32,7 +32,7 @@ export default function Header() {
               <Menu size={20} />
             </button>
             <Link to="/" className="flex items-center gap-2 group md:hidden min-w-0">
-              <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm group-hover:bg-indigo-700 transition-colors flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors flex-shrink-0">
                 <Cpu size={18} className="text-white" />
               </div>
               <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">
@@ -51,7 +51,7 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search products..."
                 className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400
-                  focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200"
+                  focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200"
               />
             </form>
           </div>
@@ -66,7 +66,7 @@ export default function Header() {
             >
               <ShoppingCart size={20} />
               {totals.itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totals.itemCount > 9 ? '9+' : totals.itemCount}
                 </span>
               )}
@@ -87,7 +87,7 @@ export default function Header() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search products..."
               className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg pl-9 pr-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400
-                focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800"
+                focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 focus:bg-white dark:focus:bg-slate-800"
             />
           </form>
         </div>

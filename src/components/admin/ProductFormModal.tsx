@@ -154,7 +154,7 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as ProductCategory)}
-              className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200"
+              className="w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -201,7 +201,7 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
             placeholder="Active noise-cancelling wireless earbuds with adaptive sound..."
-            className={`w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200 resize-none ${
+            className={`w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200 resize-none ${
               errors.description ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20' : ''
             }`}
           />
@@ -267,7 +267,7 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
             <button
               type="button"
               onClick={addSpecRow}
-              className="flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400"
+              className="flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400"
             >
               <Plus size={12} /> Add row
             </button>
@@ -279,13 +279,13 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
                   placeholder="Battery Life"
                   value={row.key}
                   onChange={(e) => updateSpecRow(idx, 'key', e.target.value)}
-                  className="flex-1 min-w-0 bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                  className="flex-1 min-w-0 bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600"
                 />
                 <input
                   placeholder="30 hours"
                   value={row.value}
                   onChange={(e) => updateSpecRow(idx, 'value', e.target.value)}
-                  className="flex-1 min-w-0 bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                  className="flex-1 min-w-0 bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600"
                 />
                 <button
                   type="button"
@@ -306,7 +306,7 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
               type="checkbox"
               checked={isFeatured}
               onChange={(e) => setIsFeatured(e.target.checked)}
-              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+              className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
             />
             Featured
           </label>
@@ -315,7 +315,7 @@ export default function ProductFormModal({ isOpen, onClose, onSubmit }: ProductF
               type="checkbox"
               checked={isNew}
               onChange={(e) => setIsNew(e.target.checked)}
-              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+              className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
             />
             Mark as New
           </label>

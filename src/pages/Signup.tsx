@@ -40,7 +40,7 @@ export default function Signup() {
     <div className="max-w-md mx-auto px-4 py-16 sm:py-24">
       <div className="flex flex-col items-center mb-8">
         <Link to="/" className="flex items-center gap-2 mb-6">
-          <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm">
+          <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center shadow-sm">
             <Cpu size={18} className="text-white" />
           </div>
           <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">TechGear</span>
@@ -90,7 +90,7 @@ export default function Signup() {
 
       <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
         Already have an account?{' '}
-        <Link to={`/login?role=${role}`} className="font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">
+        <Link to={`/login?role=${role}`} className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400">
           Sign in
         </Link>
       </p>

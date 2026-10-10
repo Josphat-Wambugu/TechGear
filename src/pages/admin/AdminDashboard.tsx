@@ -61,7 +61,7 @@ export default function AdminDashboard() {
             <h2 className="text-sm font-semibold text-slate-900 dark:text-white">Recent Orders</h2>
             <Link
               to="/admin/orders"
-              className="flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400"
+              className="flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400"
             >
               View all <ArrowRight size={12} />
             </Link>

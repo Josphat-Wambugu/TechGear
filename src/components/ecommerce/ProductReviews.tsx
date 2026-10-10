@@ -73,7 +73,7 @@ export default function ProductReviews({ product }: { product: Product }) {
         {reviews.slice(0, visibleCount).map((review) => (
           <div key={review.id} className="border-b border-slate-100 dark:border-slate-800 pb-5 last:border-0">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
+              <div className="w-9 h-9 rounded-full bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
                 {initials(review.author)}
               </div>
               <div className="flex-1 min-w-0">
@@ -103,11 +103,11 @@ export default function ProductReviews({ product }: { product: Product }) {
                   onClick={() => markHelpful(review.id)}
                   className={`inline-flex items-center gap-1.5 text-xs font-medium mt-2.5 transition-colors ${
                     helpfulClicks[review.id]
-                      ? 'text-indigo-600 dark:text-indigo-400'
+                      ? 'text-brand-600 dark:text-brand-400'
                       : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
                   }`}
                 >
-                  <ThumbsUp size={13} className={helpfulClicks[review.id] ? 'fill-indigo-600 dark:fill-indigo-400' : ''} />
+                  <ThumbsUp size={13} className={helpfulClicks[review.id] ? 'fill-brand-600 dark:fill-brand-400' : ''} />
                   Helpful ({review.helpfulCount + (helpfulClicks[review.id] ? 1 : 0)})
                 </button>
               </div>
@@ -119,7 +119,7 @@ export default function ProductReviews({ product }: { product: Product }) {
       {visibleCount < reviews.length && (
         <button
           onClick={() => setVisibleCount((v) => v + 3)}
-          className="mt-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 transition-colors"
+          className="mt-2 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 transition-colors"
         >
           Show more reviews
         </button>

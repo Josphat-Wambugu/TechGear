@@ -28,7 +28,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             className={`
               w-full bg-slate-100/70 dark:bg-slate-800 border border-transparent rounded-xl
               px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500
-              focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600
+              focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600
               focus:bg-white dark:focus:bg-slate-800 transition-all duration-200
               ${icon ? 'pl-10' : ''}
               ${error ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20' : ''}

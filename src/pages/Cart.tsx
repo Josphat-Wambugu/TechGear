@@ -4,6 +4,7 @@ import { useCart } from '@/hooks/useCart';
 import CartItemRow from '@/components/ecommerce/CartItemRow';
 import OrderSummary from '@/components/ecommerce/OrderSummary';
 import Button from '@/components/common/Button';
+import PageContainer from '@/components/layout/PageContainer';
 
 export default function Cart() {
   const { items, totals, clearCart } = useCart();
@@ -19,8 +20,8 @@ export default function Cart() {
         <p className="text-slate-500 dark:text-slate-400 mt-2">Looks like you haven't added anything yet.</p>
         <Link
           to="/catalog"
-          className="inline-flex items-center gap-2 mt-6 bg-indigo-600 text-white px-6 py-3 rounded-xl
-            font-medium shadow-sm hover:bg-indigo-700 hover:-translate-y-0.5 transition-all duration-200"
+          className="inline-flex items-center gap-2 mt-6 bg-brand-600 text-white px-6 py-3 rounded-xl
+            font-medium shadow-sm hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-200"
         >
           Start Shopping <ArrowRight size={16} />
         </Link>
@@ -29,7 +30,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageContainer className="py-8">
       <button
         onClick={() => navigate('/catalog')}
         className="flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-6"
@@ -71,6 +72,6 @@ export default function Cart() {
           </OrderSummary>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

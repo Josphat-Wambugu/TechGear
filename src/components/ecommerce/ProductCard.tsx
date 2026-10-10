@@ -73,7 +73,7 @@ export default function ProductCard({ product }: { product: Product }) {
               ${
                 justAdded || alreadyInCart
                   ? 'bg-emerald-50 text-emerald-600'
-                  : 'bg-indigo-50 dark:bg-indigo-950 text-indigo-600 hover:bg-indigo-600 hover:text-white'
+                  : 'bg-brand-50 dark:bg-brand-950 text-brand-600 hover:bg-brand-600 hover:text-white'
               }`}
             aria-label="Add to cart"
           >

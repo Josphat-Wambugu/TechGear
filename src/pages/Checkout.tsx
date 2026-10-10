@@ -8,6 +8,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import Modal from '@/components/common/Modal';
 import OrderSummary from '@/components/ecommerce/OrderSummary';
+import PageContainer from '@/components/layout/PageContainer';
 import type { CheckoutStep, FormErrors, PaymentInfo, ShippingInfo } from '@/types/checkout';
 
 const steps: { key: CheckoutStep; label: string; icon: typeof Truck }[] = [
@@ -80,8 +81,8 @@ export default function Checkout() {
         <p className="text-slate-500 dark:text-slate-400 mt-2">Your cart is empty. Add some products first.</p>
         <Link
           to="/catalog"
-          className="inline-flex items-center gap-2 mt-6 bg-indigo-600 text-white px-6 py-3 rounded-xl
-            font-medium shadow-sm hover:bg-indigo-700 hover:-translate-y-0.5 transition-all duration-200"
+          className="inline-flex items-center gap-2 mt-6 bg-brand-600 text-white px-6 py-3 rounded-xl
+            font-medium shadow-sm hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-200"
         >
           Browse Catalog
         </Link>
@@ -130,7 +131,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageContainer maxWidth="5xl" className="py-8">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-6"
@@ -153,9 +154,9 @@ export default function Checkout() {
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors
                     ${
                       isDone
-                        ? 'bg-indigo-600 border-indigo-600 text-white'
+                        ? 'bg-brand-600 border-brand-600 text-white'
                         : isActive
-                        ? 'border-indigo-600 text-indigo-600 bg-white dark:bg-slate-900'
+                        ? 'border-brand-600 text-brand-600 bg-white dark:bg-slate-900'
                         : 'border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-900'
                     }`}
                 >
@@ -168,7 +169,7 @@ export default function Checkout() {
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-3 ${isDone ? 'bg-indigo-600' : 'bg-slate-200'}`} />
+                <div className={`flex-1 h-0.5 mx-3 ${isDone ? 'bg-brand-600' : 'bg-slate-200'}`} />
               )}
             </div>
           );
@@ -274,7 +275,7 @@ export default function Checkout() {
               className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700 rounded-xl p-6 shadow-sm space-y-4"
             >
               <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                <Lock size={16} className="text-indigo-600" /> Payment Details
+                <Lock size={16} className="text-brand-600" /> Payment Details
               </h2>
               <Input
                 label="Name on Card"
@@ -404,6 +405,6 @@ export default function Checkout() {
           </Button>
         </div>
       </Modal>
-    </div>
+    </PageContainer>
   );
 }

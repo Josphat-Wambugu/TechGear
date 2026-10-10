@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { X, ShoppingBag, Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { formatCurrency } from '@/utils/formatCurrency';
+import { useOverlay } from '@/hooks/useOverlay';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -11,31 +11,29 @@ interface CartDrawerProps {
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, totals, updateQuantity, removeItem } = useCart();
-
-  useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  const panelRef = useOverlay(isOpen, onClose);
 
   return (
     <>
       <div
-        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-overlay-backdrop transition-opacity duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}
+        aria-hidden="true"
       />
       <aside
-        className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white dark:bg-slate-900 z-50 shadow-xl
+        ref={panelRef as React.RefObject<HTMLElement>}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Shopping cart"
+        className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white dark:bg-slate-900 z-overlay-panel shadow-xl
           border-l border-slate-200/80 dark:border-slate-700 flex flex-col transition-transform duration-300
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/80 dark:border-slate-700">
           <h2 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-            <ShoppingBag size={20} className="text-indigo-600" />
+            <ShoppingBag size={20} className="text-brand-600" />
             Your Cart
             {totals.itemCount > 0 && (
               <span className="text-sm font-normal text-slate-500 dark:text-slate-400">({totals.itemCount})</span>
@@ -60,7 +58,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <Link
               to="/catalog"
               onClick={onClose}
-              className="inline-flex items-center justify-center font-medium bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm text-sm px-4 py-2.5 rounded-xl mt-2 transition-all duration-200 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center font-medium bg-brand-600 text-white hover:bg-brand-700 shadow-sm text-sm px-4 py-2.5 rounded-xl mt-2 transition-all duration-200 hover:-translate-y-0.5"
             >
               Browse Catalog
             </Link>
@@ -84,7 +82,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg">
                         <button
-                          className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                          className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                           onClick={() => updateQuantity(product.id, quantity - 1)}
                           aria-label="Decrease quantity"
                         >
@@ -92,7 +90,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         </button>
                         <span className="text-sm w-6 text-center">{quantity}</span>
                         <button
-                          className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors disabled:opacity-30"
+                          className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors disabled:opacity-30"
                           onClick={() => updateQuantity(product.id, quantity + 1)}
                           disabled={quantity >= product.stockCount}
                           aria-label="Increase quantity"
@@ -131,7 +129,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <Link
                 to="/cart"
                 onClick={onClose}
-                className="w-full inline-flex items-center justify-center font-medium bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm text-base px-6 py-3 rounded-xl mt-2 transition-all duration-200 hover:-translate-y-0.5"
+                className="w-full inline-flex items-center justify-center font-medium bg-brand-600 text-white hover:bg-brand-700 shadow-sm text-base px-6 py-3 rounded-xl mt-2 transition-all duration-200 hover:-translate-y-0.5"
               >
                 View Cart
               </Link>
