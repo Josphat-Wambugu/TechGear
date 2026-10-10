@@ -44,7 +44,7 @@ export default function Login() {
           </div>
           <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">TechGear</span>
         </Link>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Sign in</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Log in</h1>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Welcome back — pick up where you left off.</p>
       </div>
 
@@ -53,7 +53,7 @@ export default function Login() {
         className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700 rounded-xl p-6 shadow-sm space-y-4"
       >
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Signing in as</label>
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Logging in as</label>
           <RoleToggle value={role} onChange={setRole} />
         </div>
 
@@ -75,7 +75,7 @@ export default function Login() {
         {error && <p className="text-sm text-rose-600 bg-rose-50 dark:bg-rose-950 rounded-lg px-3 py-2">{error}</p>}
 
         <Button type="submit" variant="primary" size="lg" fullWidth icon={<LogIn size={16} />}>
-          Sign in {role === 'admin' ? 'as Admin' : 'as Customer'}
+          Log in {role === 'admin' ? 'as Admin' : 'as Customer'}
         </Button>
       </form>
 
