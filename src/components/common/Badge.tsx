@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 type BadgeVariant = 'indigo' | 'emerald' | 'rose' | 'slate' | 'amber';
 
 const variantStyles: Record<BadgeVariant, string> = {
-  indigo: 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 border-indigo-200/60 dark:border-indigo-800',
+  indigo: 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400 border-brand-200/60 dark:border-brand-800',
   emerald: 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border-emerald-200/60 dark:border-emerald-800',
   rose: 'bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-400 border-rose-200/60 dark:border-rose-800',
   slate: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200/60 dark:border-slate-700',

@@ -4,19 +4,22 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { StoreDataProvider } from '@/context/StoreDataContext';
 import { AuthProvider } from '@/context/AuthContext';
 import AppRouter from '@/router/AppRouter';
+import ErrorBoundary from '@/components/layout/ErrorBoundary';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <StoreDataProvider>
-          <CartProvider>
-            <FilterProvider>
-              <AppRouter />
-            </FilterProvider>
-          </CartProvider>
-        </StoreDataProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <StoreDataProvider>
+            <CartProvider>
+              <FilterProvider>
+                <AppRouter />
+              </FilterProvider>
+            </CartProvider>
+          </StoreDataProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }

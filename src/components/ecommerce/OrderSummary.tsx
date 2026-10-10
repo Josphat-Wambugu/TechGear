@@ -19,7 +19,7 @@ export default function OrderSummary({ totals, children, showFreeShippingHint = 
       <h3 className="text-base font-semibold text-slate-900 dark:text-white">Order Summary</h3>
 
       {showFreeShippingHint && remainingForFreeShipping > 0 && totals.subtotal > 0 && (
-        <div className="flex items-start gap-2 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 text-xs font-medium rounded-lg p-3">
+        <div className="flex items-start gap-2 bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400 text-xs font-medium rounded-lg p-3">
           <Truck size={14} className="mt-0.5 flex-shrink-0" />
           <span>
             Add {formatCurrency(remainingForFreeShipping)} more for <strong>free shipping</strong>!
